@@ -1,4 +1,6 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+# Completed React tutorial.
+It was a great initial dive into seeing how react components interact with each other. Was nice to see 'this.props' and basic inheritance in action.
 
 # React Tutorial
 
