@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'profile/index'
+
+  devise_for :users
+
+  get 'profile' => 'profile#index'
+  patch 'profile' => 'profile#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
