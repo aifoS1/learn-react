@@ -7,13 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
           
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="right">
       <% if user_signed_in? %>
-        Welcome <%= current_user.email %>,
+        Welcome <%= link_to current_user.display_name, "/profile" %>,
         <%= link_to "logout", destroy_user_session_path, method: 'delete' %>
       <% else %>
         Please <%= link_to "login", new_user_session_path %> or <%= link_to "Signup", new_user_registration_path %>
