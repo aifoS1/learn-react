@@ -1,53 +1,17 @@
-import TweetBox from './components/TweetBox';
-import TweetsList from './components/TweetsList';
-import TweetStore from './stores/TweetStore';
+import React from 'react';
+// import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import Index from './components/Index';
+import Follow from  './components/Follow';
 
-import TweetActions from "./actions/TweetActions";
 
-TweetActions.getAllTweets();
+import { Router, Route, Link, hashHistory } from 'react-router';
 
-let getAppState = () => {
-  return { tweetsList: TweetStore.getAll() };
-}
-
-class Main extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = getAppState();
-    this._onChange = this._onChange.bind(this);
-  }
-
-  addTweet(tweetToAdd){
-    // $.post("/tweets", { body: tweetToAdd })
-    // .success( savedTweet => {
-    //   let newTweetsList = this.state.tweetsList;
-    //   newTweetsList.unshift(savedTweet);
-    //   this.setState(this.formattedTweets(newTweetsList));
-    // })
-    // .error(error => console.log(error));
-
-  }
-  componentDidMount(){
-    TweetStore.addChangeListener(this._onChange)
-    // $.ajax("/tweets")
-    // .success(data => this.setState(this.formattedTweets(data)))
-    // .error(error => console.log(error));
-  }
-  componentWillUnmount(){
-    TweetStore.removeChangeListener(this._onChange)
-    // $.ajax("/tweets")
-    // .success(data => this.setState(this.formattedTweets(data)))
-    // .error(error => console.log(error));
-  }
-  _onChange() {
-    console.log(5, "Main._onChange")
-    this.setState(getAppState());
-  }
+class App extends React.Component {
   render() {
     return (
-      <div className="container">
-        <TweetBox sendTweet={this.addTweet.bind(this)} />
-        <TweetsList tweets={this.state.tweetsList}/>
+      <div>
+      {this.props.children}
       </div>
     );
   }
@@ -56,8 +20,14 @@ class Main extends React.Component {
 let documentReady = () => {
   let reactNode = document.getElementById('react');
   if (reactNode) {
-    ReactDOM.render(
-      <Main />,
+    render (
+      <Router history={hashHistory}>
+        <Route component={App}>
+          <Route path="/" component={Index} />
+          <Route path="/follow" component={Follow} />
+        </Route>
+      </Router>
+      ,
       reactNode
     );    
   }
