@@ -27,7 +27,8 @@ export default class Follow extends React.Component {
     UserActions.followUser(userId)
   }
   followClasses(following) {
-    return "secondary-content btn-floating" + (following ? "green" : "grey")
+    return "secondary-content btn-floating " + (following ? "green" : "grey")
+    console.log(following)
   }
   render () {
     let users = this.state.users.map( user => {

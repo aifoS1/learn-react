@@ -11,6 +11,7 @@ class UserEventEmitter extends AppEventEmitter {
   getAll() {
     return _users.map( user => {
       user.following = _followedIds.indexOf(user.id) >= 0;
+      console.log(user.following)
       return user;
     });
   }
